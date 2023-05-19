@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 18:07:39 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/19 14:11:15 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/19 17:12:46 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,21 +54,16 @@ def get_passwd():
 	passwd = hashlib.sha256(secret.encode('utf-8')).digest()
 	return passwd
 
-def	get_files(ruta_carpeta):
+def	get_files(ruta_carpeta, ex_files):
 	# Obtener la lista de archivos y directorios en la carpeta
 	elementos = os.listdir(ruta_carpeta)
 	# Recorrer y mostrar los nombres de los archivos y directorios
 	for elemento in elementos:
 		ruta_elemento = os.path.join(ruta_carpeta, elemento)
 		if os.path.isdir(ruta_elemento):
-			#print(f'Directorio: {elemento}')
-			get_files(ruta_elemento)
-
-		elif any(elemento.endswith(extension) for extension in exet):
-		#elif  re.search(patron, elemento, re.IGNORECASE):
+			get_files(ruta_elemento, ex_files)
+		elif any(elemento.endswith(extension) for extension in ex_files):
 			files.append(ruta_elemento)
-
-			#print(f'Archivo: {elemento}')
 
 def	get_home():
 	if platform.system() == 'Windows': #Conprobar que funciona
@@ -89,11 +84,10 @@ def	get_home():
 
 files = []
 #passwd = get_passwd()
-cifrar_archivo("./prueba.txt", "passwd")
-descifrar_archivo("./prueba.txt.ft", "passwd")
+
 home = get_home()
 print(home)
-get_files("./")
+get_files("./pruebas", exet)
 for i in files:
 	print("file -> ", i)
 
