@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 18:07:39 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/19 13:34:46 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/19 14:11:15 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,12 @@ buffer_size = 64 * 1024
 def cifrar_archivo(input, clave):
 	output = input + ".ft"
 	pyAesCrypt.encryptFile(input, output, clave, buffer_size)
+	os.remove(input)
 
 # Descifrado de un archivo cifrado
 def descifrar_archivo(input, clave):
-	output = inputcadena.rstrip(".ft")
+	#output = input.rstrip(".ft")
+	output = re.sub(r"\.ft$", "", input)
 	pyAesCrypt.decryptFile(input, output, clave, buffer_size)
 
 
@@ -87,7 +89,8 @@ def	get_home():
 
 files = []
 #passwd = get_passwd()
-cifrar_archivo()
+cifrar_archivo("./prueba.txt", "passwd")
+descifrar_archivo("./prueba.txt.ft", "passwd")
 home = get_home()
 print(home)
 get_files("./")
