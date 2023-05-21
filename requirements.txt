@@ -1,0 +1,10 @@
+sys
+os
+re
+hashlib
+argparse
+struct
+time
+platform
+pyAesCrypt
+pycrypto

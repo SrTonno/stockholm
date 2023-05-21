@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 18:07:39 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/21 16:46:43 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/21 17:35:36 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ elif (args.r != None):
 		descifrar_archivo(doc, passwd, args.s)
 else:
 	passwd = get_passwd()
+	#passwd = check_passwd(args.secret)
 	get_files(home, exet)
 	for doc in files:
 		cifrar_archivo(doc, passwd, args.s)
