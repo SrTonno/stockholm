@@ -1,0 +1,5 @@
+En este ejemplo, las funciones funcion1() y funcion2() son definiciones de funciones en el programa. A continuación, se utiliza el bloque if __name__ == '__main__': para ejecutar el código que se encuentra dentro cuando el archivo se ejecuta directamente.
+
+Dentro de este bloque, puedes llamar a las funciones, realizar operaciones iniciales o cualquier otra lógica que desees que se ejecute cuando el archivo se ejecute como un script principal.
+
+Esto permite que el código dentro del bloque if __name__ == '__main__': no se ejecute si el archivo se importa como un módulo en otro programa. De esta manera, puedes tener definiciones de funciones y otros componentes reutilizables en el archivo que no se ejecutarán automáticamente cuando el archivo se importe en otro lugar.

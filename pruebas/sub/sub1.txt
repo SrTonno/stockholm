@@ -1,0 +1,5 @@
+El error que estás experimentando indica que se produjo un error de tipo en la función stretch() de pyAesCrypt. Parece que el problema está relacionado con la codificación de la contraseña.
+
+La función stretch() intenta actualizar un objeto passHash utilizando la contraseña proporcionada, pero parece que hay un problema con la codificación de la cadena de contraseña.
+
+Para solucionar este problema, asegúrate de que la variable passw sea una cadena de texto válida en el formato esperado por la función stretch(). Puedes intentar convertir explícitamente la contraseña a una cadena de bytes utilizando el método encode() con una codificación específica. Aquí tienes un ejemplo:

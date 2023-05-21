@@ -1,0 +1,7 @@
+En este ejemplo, se utiliza la función open('README.md', 'r') para abrir el archivo README.md en modo de lectura. El archivo se abre en un bloque with, lo que garantiza que se cierre correctamente después de su uso.
+
+A continuación, se utiliza el método read() para leer el contenido completo del archivo y se almacena en la variable contenido.
+
+Finalmente, se imprime el contenido del archivo utilizando print(contenido).
+
+Asegúrate de que el archivo README.md se encuentre en el mismo directorio que el archivo de Python desde el cual estás ejecutando este código. Si el archivo está en un directorio diferente, debes proporcionar la ruta completa o relativa al archivo
