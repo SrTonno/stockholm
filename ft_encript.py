@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 13:08:16 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/21 16:12:58 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/21 18:04:17 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ def cifrar_archivo(input, clave, s):
 		pyAesCrypt.encryptFile(input, output, clave, buffer_size)
 		os.remove(input)
 		if (s != True):
-				print(f"file -> {output}")
+				print(f"encrypt -> {output}")
 
 # Descifrado de un archivo cifrado
 def descifrar_archivo(input, clave, s):
@@ -38,7 +38,7 @@ def descifrar_archivo(input, clave, s):
 			pyAesCrypt.decryptFile(input, output, clave, buffer_size)
 			os.remove(input)
 			if (s != True):
-				print(f"file -> {output}")
+				print(f"dencrypt -> {output}")
 		except:
 			return
 

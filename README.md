@@ -19,7 +19,7 @@ El programa "stockholm.py" imita el comportamiento del ransomware WannaCry, pero
 > Introduce la contraeña: <contraseña>
 ## Lenguaje
 Este programa está escrito en Python3.
-
+ 
 ### Librerías utilizadas
 - sys
 - os
