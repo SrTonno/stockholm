@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 13:02:20 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/21 17:35:43 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/22 11:37:07 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,15 @@ import pyAesCrypt
 def parseo():
 	parser = argparse.ArgumentParser(description='Una replica del querer llorar(wanna cry)', add_help=False)
 
+
+	parser.add_argument('secret',
+					# dest='secret', // No utilizar asi
+					type=str,
+					nargs='?',
+					help='contraseña')
 	parser.add_argument('-r', '--reverse',
 					dest="r",
-					type=str,
+					action='store_true',
 					help='Cantidad de subniveles debusqueda')
 
 	parser.add_argument('-s', '--silent',

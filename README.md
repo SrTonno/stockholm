@@ -14,12 +14,13 @@ El programa "stockholm.py" imita el comportamiento del ransomware WannaCry, pero
 
 ### Encriptar
 > python3 stockholm.py <contraseña>
+
 ### Desncriptar
-> python3 stockholm.py -r
-> Introduce la contraeña: <contraseña>
+> python3 stockholm.py -r <contraseña>
+
 ## Lenguaje
 Este programa está escrito en Python3.
- 
+
 ### Librerías utilizadas
 - sys
 - os

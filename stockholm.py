@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 18:07:39 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/21 17:35:36 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/22 13:06:46 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,14 +70,14 @@ if args.h == True:
 	ft_help()
 elif args.v == True:
 	print("version stockholm 1.0")
-elif (args.r != None):
-	passwd = check_passwd(args.r)
+elif (args.r == True):
+	passwd = check_passwd(args.secret)
 	get_files(home, exet_ft)
 	for doc in files:
 		descifrar_archivo(doc, passwd, args.s)
 else:
-	passwd = get_passwd()
-	#passwd = check_passwd(args.secret)
+	#passwd = get_passwd()
+	passwd = check_passwd(args.secret)
 	get_files(home, exet)
 	for doc in files:
 		cifrar_archivo(doc, passwd, args.s)
