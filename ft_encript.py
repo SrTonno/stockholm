@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 13:08:16 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/22 13:28:43 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/22 15:30:16 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ import pyAesCrypt
 def cifrar_archivo(input, clave, s):
 	output = input + ".ft"
 	if os.path.exists(output):
-		print(f"Error {output} ya existe se creara con _stockholm.ft")
+		if (s != True):
+			print(f"Error {output} ya existe se creara con _stockholm.ft")
 		output = input + "_stockholm.ft"
 	if not(os.path.exists(output)):
 		pyAesCrypt.encryptFile(input, output, clave, buffer_size)
