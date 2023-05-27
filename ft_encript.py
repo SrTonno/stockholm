@@ -6,7 +6,7 @@
 #    By: tvillare <tvillare@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 13:08:16 by tvillare          #+#    #+#              #
-#    Updated: 2023/05/22 15:30:16 by tvillare         ###   ########.fr        #
+#    Updated: 2023/05/27 16:54:10 by tvillare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ import struct
 import time
 import platform
 import pyAesCrypt
+
+# Tamaño del búfer de cifrado/descifrado (en bytes)
+buffer_size = 64 * 1024
 
 # Cifrado de un archivo
 def cifrar_archivo(input, clave, s):
@@ -46,21 +49,11 @@ def descifrar_archivo(input, clave, s):
 		except:
 			return
 
-# Tamaño del búfer de cifrado/descifrado (en bytes)
-buffer_size = 64 * 1024
 
-
-def get_passwd():
-	secret = input("Introduce la contraeña: ")
-	if (len(secret) < 16):
-		print("Contraseña muy corta")
-		sys.exit()
-	passwd = hashlib.sha256(secret.encode('utf-8')).digest()
-	return secret
 
 def check_passwd(secret):
 	if (secret == None) or (len(secret) < 16):
 		print("Contraseña muy corta")
 		sys.exit()
-	passwd = hashlib.sha256(secret.encode('utf-8')).digest()
+	#passwd = hashlib.sha256(secret.encode('utf-8')).digest()
 	return secret
